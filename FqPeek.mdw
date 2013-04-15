@@ -1,0 +1,6 @@
+<WorkspaceItem ctype="Workspace">
+  <Items>
+    <Item>src/FqPeekLib/FqPeekLib.sln</Item>
+    <Item>src/FqPeek/FqPeek.sln</Item>
+  </Items>
+</WorkspaceItem>
