@@ -2,7 +2,6 @@ module FqPeek.Main
 
 open System
 open System.IO
-
 open FqPeekLib.Fastq
 
 // the list of top-level commands available

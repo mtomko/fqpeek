@@ -3,7 +3,17 @@ module FqPeekLib.Fastq
 open System
 open System.IO
 
-type Dialect = Illumina | Solexa
+type Dialect = Illumina | IonTorrent | Sanger | Solexa
+
+let phredBase dialect =
+    match dialect with
+    | Illumina -> 64
+    | IonTorrent -> 33
+    | Sanger -> 33
+    | Solexa -> 64
+
+let phredAtoi dialect score =
+    (int score) - (phredBase dialect)
 
 [<Struct>]
 type Fastq(id : String, sequence : char[], qual : char[]) = 
@@ -27,3 +37,4 @@ let readFastq (filePath : string) =
             let quals = sr.ReadLine().ToCharArray()
             yield new Fastq(id, bases, quals)
     }
+
