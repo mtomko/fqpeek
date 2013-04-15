@@ -149,3 +149,4 @@ let main (args : string[]) =
     match commandLineOptions.command with
     | Count -> countCommand commandLineOptions.options commandLineOptions.files
     | _ -> failwith "Usage: seqpeek <command> <options> <files>"
+

@@ -1,4 +1,4 @@
-module SeqPeek.AssemblyInfo
+module FqPeek.AssemblyInfo
 open System.Reflection
 open System.Runtime.CompilerServices
 
