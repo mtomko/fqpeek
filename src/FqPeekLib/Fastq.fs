@@ -12,7 +12,7 @@ let phredBase dialect =
     | Sanger -> 33
     | Solexa -> 64
 
-let phredAtoi dialect score =
+let phredAtoi dialect (score : char) =
     (int score) - (phredBase dialect)
 
 [<Struct>]
