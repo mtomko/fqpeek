@@ -1,10 +1,10 @@
-module FqPeekLib.Fastq
+module FqPeek.Lib
 
 open System
 open System.IO
 
 type Dialect = Illumina | IonTorrent | Sanger | Solexa
-
+    
 let phredBase dialect =
     match dialect with
     | Illumina -> 64
