@@ -2,7 +2,7 @@ module FqPeek.Main
 
 open System
 open System.IO
-open FqPeekLib.Fastq
+open FqPeek.Lib
 
 // the list of top-level commands available
 type Command = Count | Help
