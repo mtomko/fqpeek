@@ -36,6 +36,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
     <Tailcalls>true</Tailcalls>
+    <DefineConstants />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

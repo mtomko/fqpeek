@@ -108,7 +108,7 @@ let countCommand options files =
         printfn "%d" count
     0
 
-let printUsage =
+let printUsage() =
     printfn "Usage: seqpeek [count | help] <options> <files>"
     0
 
@@ -116,11 +116,11 @@ let printUsage =
 [<EntryPoint>]
 let main (args : string[]) = 
     if args.Length < 1 then
-        printUsage
+        printUsage()
     else
         let command = parseCommand args.[0]
         let commandLineOptions = parseCommandLineRec (Array.toList args.[1..]) { defaultOptions with command = command }
         match commandLineOptions.command with
         | Count -> countCommand commandLineOptions.options commandLineOptions.files
-        | _ -> printUsage
+        | _ -> printUsage()
 
