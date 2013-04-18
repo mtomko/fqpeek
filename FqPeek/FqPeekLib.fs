@@ -12,8 +12,11 @@ let phredBase dialect =
     | Sanger -> 33
     | Solexa -> 64
 
-let phredAtoi dialect (score : char) =
+let phredAtoI dialect (score : char) =
     (int score) - (phredBase dialect)
+    
+let phredItoA dialect (score : int) =
+    (char (score + (phredBase dialect)))
 
 [<Struct>]
 type Fastq(id : String, sequence : char[], qual : char[]) = 
@@ -23,7 +26,7 @@ type Fastq(id : String, sequence : char[], qual : char[]) =
    
     override this.ToString() =
         let seqs = String.Join("", sequence)
-        let quals = String.Join(" ", qual)
+        let quals = String.Join("", qual)
         sprintf "@%s\n%s\n+%s\n%s" id seqs id quals
 
 // reads a file as a stream of Fastq records
