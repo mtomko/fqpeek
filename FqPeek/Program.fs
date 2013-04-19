@@ -5,7 +5,7 @@ open System.IO
 open FqPeek.Lib
 
 // the list of top-level commands available
-type Command = Count | Help
+type Command = Count | Filter | Help
 
 // options for the count command
 type CommandOption = MinLength of int | MaxLength of int
@@ -26,6 +26,7 @@ let defaultOptions = {
 let parseCommand (command : string) =
     match command.ToLower() with
     | "count" -> Count
+    | "filter" -> Filter
     | _ -> Help
 
 // based on http://fsharpforfunandprofit.com/posts/pattern-matching-command-line/
@@ -69,7 +70,7 @@ let rec parseCommandLineRec args optionsSoFar =
         parseCommandLineRec xs { optionsSoFar with files = x :: optionsSoFar.files }
 
 // reads the option structure and returns a filter over fastq records
-let buildCountFilter options = 
+let buildFilterPredicate options = 
     // this could be reworked in terms of fold
     let rec loop (minLength : int option) (maxLength : int option) options = 
         match options with
@@ -85,24 +86,39 @@ let buildCountFilter options =
         (fun (f : Fastq) -> let l = (Array.length f.Sequence) in l <= max)
     | None, None -> (fun f -> true)
     
-let countMatchingReads countFilter file = 
-    readFastq file
-    |> Seq.filter countFilter
-    |> Seq.length
+    
+let filterFile predicate file =
+    readFastq file |> Seq.filter predicate
+    
+let countMatchingReads predicate file = 
+    filterFile predicate file |> Seq.length
+
+let printMatchingReads predicate file =
+    let records = filterFile predicate file
+    for fastq in records do
+        printfn "%s" (fastq.ToString())
 
 let countCommand options files =
-    let countFilter = buildCountFilter options
+    let predicate = buildFilterPredicate options
     if Seq.length files > 1 then
         for file in files do
-            let count = countMatchingReads countFilter file
+            let count = countMatchingReads predicate file
             printfn "%s\n\t%d" file count
     else
-        let count = countMatchingReads countFilter (List.head files)
+        let count = countMatchingReads predicate (List.head files)
         printfn "%d" count
     0
 
+let filterCommand options files =
+    let predicate = buildFilterPredicate options
+    if Seq.length files = 1 then
+        printMatchingReads predicate (List.head files)
+        0
+    else
+        -1
+
 let printUsage() =
-    printfn "Usage: seqpeek [count | help] <options> <files>"
+    printfn "Usage: seqpeek [count | filter | help] <options> <files>"
     0
 
 // the main program
@@ -115,5 +131,6 @@ let main (args : string[]) =
         let commandLineOptions = parseCommandLineRec (Array.toList args.[1..]) { defaultOptions with command = command }
         match commandLineOptions.command with
         | Count -> countCommand commandLineOptions.options commandLineOptions.files
+        | Filter -> filterCommand commandLineOptions.options commandLineOptions.files
         | _ -> printUsage()
 
