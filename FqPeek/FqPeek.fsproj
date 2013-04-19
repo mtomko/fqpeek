@@ -13,7 +13,7 @@
       <BuildOrder>
         <String>AssemblyInfo.fs</String>
         <String>FqPeekLib.fs</String>
-        <String>test/FastqTest.fs</String>
+        <String>test/FqPeekLibTest.fs</String>
         <String>Program.fs</String>
       </BuildOrder>
     </BuildOrder>
@@ -56,7 +56,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Program.fs" />
     <Compile Include="FqPeekLib.fs" />
-    <Compile Include="test\FastqTest.fs" />
+    <Compile Include="test\FqPeekLibTest.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>

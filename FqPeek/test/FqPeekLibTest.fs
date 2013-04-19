@@ -1,10 +1,18 @@
-module FqPeek.Test
+module FqPeekLib.Test
 
-open NUnit.Framework
-open FsUnit
-
-open System
 open FqPeek.Lib
+open FsUnit
+open NUnit.Framework
+open System
+
+[<Test>]
+let TestToInt () =
+    match "74" with
+    | _ -> Assert.Fail("This case should not fire")
+
+    match "seventy-four" with
+    | ToInt x -> Assert.Fail("This case should not fire")
+    | _ -> Assert.True(true)
 
 [<Test>]
 let TestPhredAtoI () =

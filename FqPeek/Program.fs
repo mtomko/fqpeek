@@ -23,13 +23,6 @@ let defaultOptions = {
     files = [] 
     }
 
-// converts a string to an integer
-// see Programming F# 3.0, pp. 188-9
-let (|ToInt|_|) x =
-    let success, result = Int32.TryParse(x)
-    if success then Some(result)
-    else None
-
 let parseCommand (command : string) =
     match command.ToLower() with
     | "count" -> Count
