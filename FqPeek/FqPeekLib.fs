@@ -48,3 +48,6 @@ let readFastq (filePath : string) =
             yield new Fastq(id, bases, quals)
     }
 
+let filterFile predicate file =
+    readFastq file |> Seq.filter predicate
+    
