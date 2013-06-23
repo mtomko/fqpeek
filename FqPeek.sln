@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "FqPeek", "FqPeek\FqPeek.fsproj", "{82E43828-1C35-4F4E-8971-96DA76C5A137}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Cln", "Cln\Cln.fsproj", "{D6F2DFCB-3CF4-4B33-9A4D-3EEE48849CFC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,10 +13,6 @@ Global
 		{82E43828-1C35-4F4E-8971-96DA76C5A137}.Debug|x86.Build.0 = Debug|x86
 		{82E43828-1C35-4F4E-8971-96DA76C5A137}.Release|x86.ActiveCfg = Release|x86
 		{82E43828-1C35-4F4E-8971-96DA76C5A137}.Release|x86.Build.0 = Release|x86
-		{D6F2DFCB-3CF4-4B33-9A4D-3EEE48849CFC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D6F2DFCB-3CF4-4B33-9A4D-3EEE48849CFC}.Debug|x86.Build.0 = Debug|Any CPU
-		{D6F2DFCB-3CF4-4B33-9A4D-3EEE48849CFC}.Release|x86.ActiveCfg = Release|Any CPU
-		{D6F2DFCB-3CF4-4B33-9A4D-3EEE48849CFC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		BaseDirectory = .
