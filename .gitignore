@@ -5,3 +5,5 @@
 FqPeek/test-results/*
 test-results/*
 packages
+
+*.test-cache
