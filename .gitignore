@@ -4,3 +4,5 @@
 *.mdb
 FqPeek/test-results/
 test-results/
+
+*.test-cache
