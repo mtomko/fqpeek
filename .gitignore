@@ -2,3 +2,7 @@
 *.dll
 *.userprefs
 *.mdb
+FqPeek/test-results/*
+test-results/*
+packages
+*.test-cache

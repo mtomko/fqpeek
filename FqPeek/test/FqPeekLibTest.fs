@@ -8,7 +8,8 @@ open System
 [<Test>]
 let TestToInt () =
     match "74" with
-    | _ -> Assert.Fail("This case should not fire")
+    | ToInt x -> Assert.AreEqual(74, x)
+    | _ -> Assert.Fail("This should not be reached")
 
     match "seventy-four" with
     | ToInt x -> Assert.Fail("This case should not fire")
