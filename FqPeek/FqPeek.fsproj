@@ -14,6 +14,7 @@
         <String>AssemblyInfo.fs</String>
         <String>FqPeekLib.fs</String>
         <String>test/FqPeekLibTest.fs</String>
+        <String>Count.fs</String>
         <String>Program.fs</String>
       </BuildOrder>
     </BuildOrder>
@@ -56,12 +57,25 @@
     <Reference Include="policy.2.3.FSharp.Core">
       <HintPath>..\packages\FSharp.Core.3.0.0.2\lib\net40\policy.2.3.FSharp.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FSharp.PowerPack">
+      <HintPath>..\packages\FSPowerPack.Core.Community.3.0.0.0\lib\Net40\FSharp.PowerPack.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.PowerPack.Linq">
+      <HintPath>..\packages\FSPowerPack.Linq.Community.3.0.0.0\lib\Net40\FSharp.PowerPack.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.PowerPack.Metadata">
+      <HintPath>..\packages\FSPowerPack.Metadata.Community.3.0.0.0\lib\Net40\FSharp.PowerPack.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.PowerPack.Parallel.Seq">
+      <HintPath>..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\lib\Net40\FSharp.PowerPack.Parallel.Seq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Program.fs" />
     <Compile Include="FqPeekLib.fs" />
     <Compile Include="test\FqPeekLibTest.fs" />
+    <Compile Include="Count.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
@@ -69,5 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="InstallationDummyFile.txt" />
   </ItemGroup>
 </Project>

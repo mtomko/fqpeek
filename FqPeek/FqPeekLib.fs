@@ -3,7 +3,7 @@ module FqPeek.Lib
 open System
 open System.IO
 
-// converts a string to an integer
+// converts a string to an integer option
 // see Programming F# 3.0, pp. 188-9
 let (|ToInt|_|) x =
     let success, result = Int32.TryParse(x)
@@ -48,3 +48,6 @@ let readFastq (filePath : string) =
             yield new Fastq(id, bases, quals)
     }
 
+let filterFile predicate file =
+    readFastq file |> Seq.filter predicate
+    

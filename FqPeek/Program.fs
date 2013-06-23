@@ -2,6 +2,7 @@ module FqPeek.Main
 
 open System
 open System.IO
+open FqPeek.Count
 open FqPeek.Lib
 
 // the list of top-level commands available
@@ -85,29 +86,11 @@ let buildFilterPredicate options =
     | None, Some(max) ->
         (fun (f : Fastq) -> let l = (Array.length f.Sequence) in l <= max)
     | None, None -> (fun f -> true)
-    
-    
-let filterFile predicate file =
-    readFastq file |> Seq.filter predicate
-    
-let countMatchingReads predicate file = 
-    filterFile predicate file |> Seq.length
 
 let printMatchingReads predicate file =
     let records = filterFile predicate file
     for fastq in records do
         printfn "%s" (fastq.ToString())
-
-let countCommand options files =
-    let predicate = buildFilterPredicate options
-    if Seq.length files > 1 then
-        for file in files do
-            let count = countMatchingReads predicate file
-            printfn "%s\n\t%d" file count
-    else
-        let count = countMatchingReads predicate (List.head files)
-        printfn "%d" count
-    0
 
 let filterCommand options files =
     let predicate = buildFilterPredicate options
@@ -128,9 +111,10 @@ let main (args : string[]) =
         printUsage()
     else
         let command = parseCommand args.[0]
-        let commandLineOptions = parseCommandLineRec (Array.toList args.[1..]) { defaultOptions with command = command }
+        let commandArgs : string list = Array.toList args.[1..]
+        let commandLineOptions = parseCommandLineRec commandArgs { defaultOptions with command = command }
         match commandLineOptions.command with
-        | Count -> countCommand commandLineOptions.options commandLineOptions.files
+        | Count -> FqPeek.Count.command commandArgs
         | Filter -> filterCommand commandLineOptions.options commandLineOptions.files
         | _ -> printUsage()
 
